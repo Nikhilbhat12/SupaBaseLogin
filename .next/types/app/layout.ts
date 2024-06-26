@@ -1,4 +1,4 @@
-// File: C:\tekdi\personal\SupaBaseLogin\app\layout.tsx
+// File: /home/ttpl-rt-118/self learning/NextJS/SupaBaseLogin/app/layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
