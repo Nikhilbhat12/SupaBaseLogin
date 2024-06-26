@@ -36,6 +36,7 @@ const UserGreetText = () => {
   useEffect(() => {
     getBlogsItems();
   }, []);
+
   const getBlogsItems = async () => {
     try {
       const { data, error } = await supabase.from("blogs").select("*");
@@ -46,6 +47,21 @@ const UserGreetText = () => {
       console.log("Blogs retrieved successfully:", data);
     } catch (error: any) {
       console.error("Error retrieving blogs:", error.message);
+    }
+  };
+
+  const deleteBlog = async (id: any) => {
+    try {
+      const { error } = await supabase.from("blogs").delete().eq("id", id);
+
+      if (error) {
+        throw error;
+      }
+
+      console.log("Blog deleted successfully");
+      getBlogsItems();
+    } catch (error: any) {
+      console.error("Error deleting blog:", error.message);
     }
   };
 
@@ -87,6 +103,7 @@ const UserGreetText = () => {
                   <div className="flex-grow p-4">
                     <h3 className="text-xl font-bold mb-2">{blog.title}</h3>
                     <p className="text-gray-700 mb-4">{blog.description}</p>
+                    <Button onClick={() => deleteBlog(blog?.id)}>Delete</Button>
                   </div>
                 </Card>
               ))}
