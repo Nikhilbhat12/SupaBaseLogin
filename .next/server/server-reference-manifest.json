@@ -2,45 +2,53 @@
   "node": {
     "240890aef931a1d2fe7254effa6bd94c163b4f51": {
       "workers": {
+        "app/dashboard/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Ctekdi%5C%5Cpersonal%5C%5CSupaBaseLogin%5C%5Clib%5C%5Cauth-action.ts%22%2C%5B%22signout%22%2C%22signInWithGoogle%22%2C%22login%22%2C%22signup%22%5D%5D%5D&__client_imported__=true!",
         "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Ctekdi%5C%5Cpersonal%5C%5CSupaBaseLogin%5C%5Clib%5C%5Cauth-action.ts%22%2C%5B%22signout%22%2C%22signInWithGoogle%22%2C%22login%22%2C%22signup%22%5D%5D%5D&__client_imported__=true!",
-        "app/(auth)/login/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Ctekdi%5C%5Cpersonal%5C%5CSupaBaseLogin%5C%5Clib%5C%5Cauth-action.ts%22%2C%5B%22signout%22%2C%22signInWithGoogle%22%2C%22login%22%2C%22signup%22%5D%5D%5D&__client_imported__=!"
+        "app/_not-found/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Ctekdi%5C%5Cpersonal%5C%5CSupaBaseLogin%5C%5Clib%5C%5Cauth-action.ts%22%2C%5B%22signout%22%2C%22signInWithGoogle%22%2C%22login%22%2C%22signup%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
+        "app/dashboard/page": "action-browser",
         "app/page": "action-browser",
-        "app/(auth)/login/page": "rsc"
+        "app/_not-found/page": "action-browser"
       }
     },
     "b137c7a2ee41caf518df45c7a1cbfe4c0fd2000f": {
       "workers": {
+        "app/dashboard/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Ctekdi%5C%5Cpersonal%5C%5CSupaBaseLogin%5C%5Clib%5C%5Cauth-action.ts%22%2C%5B%22signout%22%2C%22signInWithGoogle%22%2C%22login%22%2C%22signup%22%5D%5D%5D&__client_imported__=true!",
         "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Ctekdi%5C%5Cpersonal%5C%5CSupaBaseLogin%5C%5Clib%5C%5Cauth-action.ts%22%2C%5B%22signout%22%2C%22signInWithGoogle%22%2C%22login%22%2C%22signup%22%5D%5D%5D&__client_imported__=true!",
-        "app/(auth)/login/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Ctekdi%5C%5Cpersonal%5C%5CSupaBaseLogin%5C%5Clib%5C%5Cauth-action.ts%22%2C%5B%22signout%22%2C%22signInWithGoogle%22%2C%22login%22%2C%22signup%22%5D%5D%5D&__client_imported__=!"
+        "app/_not-found/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Ctekdi%5C%5Cpersonal%5C%5CSupaBaseLogin%5C%5Clib%5C%5Cauth-action.ts%22%2C%5B%22signout%22%2C%22signInWithGoogle%22%2C%22login%22%2C%22signup%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
+        "app/dashboard/page": "action-browser",
         "app/page": "action-browser",
-        "app/(auth)/login/page": "rsc"
+        "app/_not-found/page": "action-browser"
       }
     },
     "f3514bf893ff7b3d46c43c8ee01f4b021efb3cce": {
       "workers": {
+        "app/dashboard/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Ctekdi%5C%5Cpersonal%5C%5CSupaBaseLogin%5C%5Clib%5C%5Cauth-action.ts%22%2C%5B%22signout%22%2C%22signInWithGoogle%22%2C%22login%22%2C%22signup%22%5D%5D%5D&__client_imported__=true!",
         "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Ctekdi%5C%5Cpersonal%5C%5CSupaBaseLogin%5C%5Clib%5C%5Cauth-action.ts%22%2C%5B%22signout%22%2C%22signInWithGoogle%22%2C%22login%22%2C%22signup%22%5D%5D%5D&__client_imported__=true!",
-        "app/(auth)/login/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Ctekdi%5C%5Cpersonal%5C%5CSupaBaseLogin%5C%5Clib%5C%5Cauth-action.ts%22%2C%5B%22signout%22%2C%22signInWithGoogle%22%2C%22login%22%2C%22signup%22%5D%5D%5D&__client_imported__=!"
+        "app/_not-found/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Ctekdi%5C%5Cpersonal%5C%5CSupaBaseLogin%5C%5Clib%5C%5Cauth-action.ts%22%2C%5B%22signout%22%2C%22signInWithGoogle%22%2C%22login%22%2C%22signup%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
+        "app/dashboard/page": "action-browser",
         "app/page": "action-browser",
-        "app/(auth)/login/page": "rsc"
+        "app/_not-found/page": "action-browser"
       }
     },
     "f37a3096a8c054d8490b70ba0bbea07fcdef6123": {
       "workers": {
+        "app/dashboard/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Ctekdi%5C%5Cpersonal%5C%5CSupaBaseLogin%5C%5Clib%5C%5Cauth-action.ts%22%2C%5B%22signout%22%2C%22signInWithGoogle%22%2C%22login%22%2C%22signup%22%5D%5D%5D&__client_imported__=true!",
         "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Ctekdi%5C%5Cpersonal%5C%5CSupaBaseLogin%5C%5Clib%5C%5Cauth-action.ts%22%2C%5B%22signout%22%2C%22signInWithGoogle%22%2C%22login%22%2C%22signup%22%5D%5D%5D&__client_imported__=true!",
-        "app/(auth)/login/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Ctekdi%5C%5Cpersonal%5C%5CSupaBaseLogin%5C%5Clib%5C%5Cauth-action.ts%22%2C%5B%22signout%22%2C%22signInWithGoogle%22%2C%22login%22%2C%22signup%22%5D%5D%5D&__client_imported__=!"
+        "app/_not-found/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5Ctekdi%5C%5Cpersonal%5C%5CSupaBaseLogin%5C%5Clib%5C%5Cauth-action.ts%22%2C%5B%22signout%22%2C%22signInWithGoogle%22%2C%22login%22%2C%22signup%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
+        "app/dashboard/page": "action-browser",
         "app/page": "action-browser",
-        "app/(auth)/login/page": "rsc"
+        "app/_not-found/page": "action-browser"
       }
     }
   },
   "edge": {},
-  "encryptionKey": "HEUcUQ9ZLEp4HBgiPpenoXdWRu+lETSu3/iomPcF35k="
+  "encryptionKey": "sTjVf8K4IsVfIb6ZxHWdEjCx2FmaJud2vMdDyyqFamU="
 }

@@ -6,9 +6,12 @@ import { Button } from './button';
 import { createClient } from '@/utils/supabase/client';
 import { signout } from '@/lib/auth-action';
 import { useRouter } from 'next/navigation';
+import { useUser } from '@/lib/store/user';
 
 const LoginButton = () => {
-  const [user, setUser] = useState<any>(null);
+  const setUser = useUser((state) => state.setUser);
+
+  const [users, setUsers] = useState<any>(null);
   const router = useRouter();
   const supabase = createClient();
   useEffect(() => {
@@ -16,16 +19,17 @@ const LoginButton = () => {
       const {
         data: { user },
       } = await supabase.auth.getUser();
-      setUser(user);
+      setUsers(user);
     };
     fetchUser();
   }, []);
-  if (user) {
+  if (users) {
     return (
       <Button
         onClick={() => {
           signout();
-          setUser(null);
+          setUsers(null);
+          setUser(undefined);
         }}
       >
         Log out
