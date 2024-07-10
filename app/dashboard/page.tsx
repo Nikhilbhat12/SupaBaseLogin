@@ -2,7 +2,7 @@
 
 import { getBlogsByUserId, insertBlog } from "@/utils/sql/sql";
 import { useEffect, useState } from "react";
-
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { IoMdArrowBack } from "react-icons/io";
@@ -11,6 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/lib/store/user";
+import { useSearchParams } from "next/navigation";
 
 const Myblogs = () => {
   const supabase = createClient();
@@ -20,10 +21,39 @@ const Myblogs = () => {
   const [file, setFile] = useState<File | null>(null);
   const [userData, setUserData] = useState<any>(null);
   const [myblogs, setMyBlogs] = useState<any[]>([]);
+  const [blogs, setBlogs] = useState<any[]>([]);
+  const [editingBlog, setEditingBlog] = useState<any>(null);
   const user = useUser((state) => state?.user);
   const setUser = useUser((state) => state?.setUser);
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
+
+  console.log(id, "Search");
 
   useEffect(() => {
+    async function fetchBlogDetails(blogId: any) {
+      try {
+        const { data, error } = await supabase
+          .from("blogs")
+          .select("*")
+          .eq("id", blogId)
+          .single();
+
+        if (error) {
+          throw error;
+        }
+        // Set form fields with existing data for editing
+        setTitle(data.title);
+        setDescription(data.description);
+        setEditingBlog(data.id);
+      } catch (error: any) {
+        console.error("Error fetching blog details:", error.message);
+      }
+    }
+
+    if (id && typeof id === "string") {
+      fetchBlogDetails(id);
+    }
     const fetchUser = async () => {
       try {
         const { data, error } = await supabase.auth.getUser();
@@ -36,7 +66,35 @@ const Myblogs = () => {
       }
     };
     fetchUser();
-  }, []);
+  }, [id]);
+
+  const getBlogsItems = async () => {
+    try {
+      const { data, error } = await supabase.from("blogs").select("*");
+      if (error) {
+        throw error;
+      }
+      setBlogs(data);
+      console.log("Blogs retrieved successfully:", data);
+    } catch (error: any) {
+      console.error("Error retrieving blogs:", error.message);
+    }
+  };
+
+  const deleteBlog = async (id: any) => {
+    try {
+      const { error } = await supabase.from("blogs").delete().eq("id", id);
+
+      if (error) {
+        throw error;
+      }
+
+      console.log("Blog deleted successfully");
+      getBlogsItems();
+    } catch (error: any) {
+      console.error("Error deleting blog:", error.message);
+    }
+  };
 
   const getMyBlogs = async () => {
     try {
@@ -68,41 +126,77 @@ const Myblogs = () => {
     setFile(uploadedFile || null);
   };
 
+  const handleEditClick = (blog: any) => {
+    setEditingBlog(blog);
+    setTitle(blog.title);
+    setDescription(blog.description);
+    scrollToTop();
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      if (!file) {
+      if (!file && !editingBlog?.file_url) {
         throw new Error("Please select a file.");
       }
 
-      const { data: fileData, error: fileError } = await supabase.storage
-        .from("images")
-        .upload(`files/${file.name}`, file);
+      let fileDataPath = editingBlog?.file_url;
 
-      if (fileError) {
-        throw fileError;
+      if (file) {
+        console.log("Uploading file...");
+
+        const { data: fileData, error: fileError } = await supabase.storage
+          .from("images")
+          .upload(`files/${file.name}`, file);
+
+        if (fileError) {
+          throw fileError;
+        }
+
+        fileDataPath = fileData?.path;
       }
 
-      await insertBlog(title, description, fileData?.path, userData?.id);
+      if (editingBlog) {
+        // console.log("Updating blog...", editingBlog);
 
-      const { data: insertData, error: insertError } = await supabase
-        .from("blogs")
-        .insert([{ title, description, file_url: fileData?.path }]);
+        const { data: updateData, error: updateError } = await supabase
+          .from("blogs")
+          .update({ title, description, file_url: fileDataPath })
+          .eq("id", editingBlog.id);
 
-      if (insertError) {
-        throw insertError;
+        if (updateError) {
+          throw updateError;
+        }
+
+        console.log("Blog updated successfully:", updateData);
+      } else {
+        console.log("Inserting new blog...");
+
+        const { data: insertData, error: insertError } = await supabase
+          .from("blogs")
+          .insert([{ title, description, file_url: fileDataPath, user_id: userData?.id }]);
+
+        if (insertError) {
+          throw insertError;
+        }
+
+        console.log("Blog inserted successfully:", insertData);
       }
 
       setTitle("");
       setDescription("");
       setFile(null);
+      setEditingBlog(null);
 
-      console.log("Form submitted successfully:", insertData);
       // Refresh blogs after successful submission
-      getMyBlogs();
+      await getMyBlogs();
     } catch (error: any) {
       console.error("Error submitting form:", error.message);
     }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -145,20 +239,32 @@ const Myblogs = () => {
               type="file"
               onChange={handleFileChange}
               accept=".png,.jpg,.jpeg"
-              required
+              required={!editingBlog}
             />
           </div>
-          <Button type="submit">Submit</Button>
+          <Button type="submit">{editingBlog ? "Update" : "Submit"}</Button>
         </form>
       </div>
 
       <div>
         {myblogs.map((blog) => (
-          <div key={blog.id}>
-            <h3>{blog.title}</h3>
-            <p>{blog.description}</p>
-            <img src={blog.file_url} alt="Blog Image" />
-          </div>
+          <Card key={blog.id} className="shadow-md mb-4 flex ml-10 mr-10">
+            <div className="flex-shrink-0">
+              <img
+                src={`https://hsuaakcahbyougsgblxw.supabase.co/storage/v1/object/public/images/${blog.file_url}`}
+                alt="Blog Image"
+                className="w-80 h-40 rounded-lg"
+              />
+            </div>
+            <div className="flex-grow p-4">
+              <h3 className="text-xl font-bold mb-2">{blog.title}</h3>
+              <p className="text-gray-700 mb-4">{blog.description}</p>
+              <div className="flex space-x-2">
+                <Button onClick={() => handleEditClick(blog)}>Edit</Button>
+                <Button onClick={() => deleteBlog(blog?.id)}>Delete</Button>
+              </div>
+            </div>
+          </Card>
         ))}
       </div>
     </div>
