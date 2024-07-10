@@ -2,7 +2,6 @@
 
 import { Card, CardContent, CardTitle } from "./card";
 import { useEffect, useState } from "react";
-
 import { Button } from "./button";
 import Image from "next/image";
 import { createClient } from "@/utils/supabase/client";
@@ -11,33 +10,29 @@ import { useRouter } from "next/navigation";
 import { useUser } from "@/lib/store/user";
 
 const UserGreetText = () => {
+  // const [file, setFile] = useState<File | null>(null);
+  // const [description, setDescription] = useState<string>("");
+  // const [title, setTitle] = useState<string>("");
+  // const [editingBlog, setEditingBlog] = useState<any>(null);
   const [userData, setUserData] = useState<any>(null);
   const setUser = useUser((state) => state.setUser);
   const [blogs, setBlogs] = useState<any[]>([]);
   const user = useUser((state) => state.user);
   const supabase = createClient();
   const router = useRouter();
-  useEffect(() => {
-    const fetchUser = async () => {
-      const { data, error } = await supabase.auth.getUser();
+  const fetchUser = async () => {
+    const { data, error } = await supabase.auth.getUser();
 
-      if (error) {
-        console.error("Error fetching user:", error.message);
-        return;
-      }
-      const user = data?.user;
-      setUserData(user);
-      setUser(user);
-    };
+    if (error) {
+      console.error("Error fetching user:", error.message);
+      return;
+    }
+    const user = data?.user;
+    setUserData(user);
+    setUser(user);
+  };
 
-    fetchUser();
-  }, []);
-
-  useEffect(() => {
-    getBlogsItems();
-  }, []);
-
-  const getBlogsItems = async () => {
+  async function getBlogsItems() {
     try {
       const { data, error } = await supabase.from("blogs").select("*");
       if (error) {
@@ -48,7 +43,9 @@ const UserGreetText = () => {
     } catch (error: any) {
       console.error("Error retrieving blogs:", error.message);
     }
-  };
+  }
+
+  
 
   const deleteBlog = async (id: any) => {
     try {
@@ -65,7 +62,21 @@ const UserGreetText = () => {
     }
   };
 
+
+
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  useEffect(() => {
+    if (userData) {
+      getBlogsItems();
+    }
+  }, [userData]);
+
   if (userData !== null) {
+    
     return (
       <div>
         <p
@@ -86,6 +97,7 @@ const UserGreetText = () => {
             variant="outline"
           >
             Add a new Blog
+            
           </Button>
         </p>
         <div className="mt-20 fixed mb-90 overflow-y-auto h-[calc(100vh-10rem)]">
@@ -103,7 +115,9 @@ const UserGreetText = () => {
                   <div className="flex-grow p-4">
                     <h3 className="text-xl font-bold mb-2">{blog.title}</h3>
                     <p className="text-gray-700 mb-4">{blog.description}</p>
-                    <Button onClick={() => deleteBlog(blog?.id)}>Delete</Button>
+                    <div className="flex space-x-2">
+                      
+                    </div>
                   </div>
                 </Card>
               ))}

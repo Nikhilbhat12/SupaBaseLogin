@@ -105,11 +105,17 @@ export const getBlogsByUserId = async (userId: string) => {
       .eq('user_id', userId);
 
     if (error) {
+      console.log(error, "error from getblogsby id");
+      
       throw error;
     }
 
+
+
     console.log('Blogs retrieved successfully by user ID:', data);
+    return data
   } catch (error: any) {
     console.error('Error retrieving blogs by user ID:', error.message);
   }
 };
+
