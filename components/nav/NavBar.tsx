@@ -7,6 +7,7 @@ import LoginButton from "../ui/LoginLogoutButton";
 import { Profile } from "./Profile";
 import { createClient } from "@/utils/supabase/client";
 import { useUser } from "@/lib/store/user";
+import { Separator } from "../ui/separator";
 
 export default function Navbar() {
   const user = useUser((state) => state.user);
@@ -32,6 +33,30 @@ export default function Navbar() {
       <Link href={"/"} className="font-bold text-2xl">
         DailyMedia
       </Link>
+      <section className="mb-5">
+        {/* <div className="space-y-1">
+        <h4 className="text-sm font-medium leading-none">Radix Primitives</h4>
+        <p className="text-sm text-muted-foreground">
+          An open-source UI component library.
+        </p>
+      </div> */}
+        <Separator className="my-4" />
+        <div className="flex h-5 items-center space-x-4 text-sm">
+          <Link href="">For You</Link>
+          <Separator orientation="vertical" />
+          <Link href="">Docs</Link>
+          <Separator orientation="vertical" />
+          <Link href="">Software development</Link>
+          <Separator orientation="vertical" />
+          <Link href="">Mental Health</Link>
+          <Separator orientation="vertical" />
+          <Link href="">Enterpreneurship</Link>
+          <Separator orientation="vertical" />
+          <Link href="">web development</Link>
+          <Separator orientation="vertical" />
+          <Link href="">Software Engineering</Link>
+        </div>
+      </section>
       {user?.id ? <Profile /> : <LoginButton />}
     </nav>
   );

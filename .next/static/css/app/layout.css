@@ -622,9 +622,17 @@ video {
 .z-10 {
   z-index: 10;
 }
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .mb-2 {
   margin-bottom: 0.5rem;
@@ -632,20 +640,17 @@ video {
 .mb-4 {
   margin-bottom: 1rem;
 }
-.ml-10 {
-  margin-left: 2.5rem;
-}
 .ml-auto {
   margin-left: auto;
-}
-.mr-10 {
-  margin-right: 2.5rem;
 }
 .mt-20 {
   margin-top: 5rem;
 }
 .mt-4 {
   margin-top: 1rem;
+}
+.mb-5 {
+  margin-bottom: 1.25rem;
 }
 .inline-block {
   display: inline-block;
@@ -671,8 +676,14 @@ video {
 .h-40 {
   height: 10rem;
 }
+.h-5 {
+  height: 1.25rem;
+}
 .h-9 {
   height: 2.25rem;
+}
+.h-\[1px\] {
+  height: 1px;
 }
 .h-\[calc\(100vh-10rem\)\] {
   height: calc(100vh - 10rem);
@@ -691,6 +702,9 @@ video {
 }
 .w-80 {
   width: 20rem;
+}
+.w-\[1px\] {
+  width: 1px;
 }
 .w-full {
   width: 100%;
@@ -742,6 +756,11 @@ video {
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
+.space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1rem * var(--tw-space-x-reverse));
+  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
 .space-y-1 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
@@ -790,6 +809,9 @@ video {
 }
 .bg-background {
   background-color: hsl(var(--background));
+}
+.bg-border {
+  background-color: hsl(var(--border));
 }
 .bg-card {
   background-color: hsl(var(--card));
@@ -1072,6 +1094,18 @@ video {
   --tw-gradient-from: inherit var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(255 255 255 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+@media (min-width: 640px) {
+
+  .sm\:mx-10 {
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+  }
+
+  .sm\:flex-row {
+    flex-direction: row;
+  }
 }
 
 @media (min-width: 1024px) {
