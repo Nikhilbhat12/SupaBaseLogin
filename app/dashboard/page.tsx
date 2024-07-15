@@ -248,7 +248,7 @@ const Myblogs = () => {
 
       <div>
         {myblogs.map((blog) => (
-          <Card key={blog.id} className="shadow-md mb-4 flex ml-10 mr-10">
+          <Card key={blog.id} className="shadow-md mb-4 mx-4 sm:mx-10 flex flex-col sm:flex-row">
             <div className="flex-shrink-0">
               <img
                 src={`https://hsuaakcahbyougsgblxw.supabase.co/storage/v1/object/public/images/${blog.file_url}`}
