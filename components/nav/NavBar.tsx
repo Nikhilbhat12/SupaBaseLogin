@@ -29,7 +29,7 @@ export default function Navbar() {
     localStorage.setItem("id", users?.id);
   }
   return (
-    <nav className="w-full justify-between items-center flex p-5 xl:p-10 fixed left-0 top-0 bg-white z-10">
+    <nav className="w-full justify-between items-center flex p-5 xl:p-10 fixed left-0 top-0 bg-white z-10 ">
       <Link href={"/"} className="font-bold text-2xl">
         DailyMedia
       </Link>
@@ -40,8 +40,8 @@ export default function Navbar() {
           An open-source UI component library.
         </p>
       </div> */}
-        <Separator className="my-4" />
-        <div className="flex h-5 items-center space-x-4 text-sm">
+        {/* <Separator className="my-4" /> */}
+        <div className="flex h-5 items-center space-x-4 text-sm ">
           <Link href="">For You</Link>
           <Separator orientation="vertical" />
           <Link href="">Docs</Link>
@@ -61,3 +61,7 @@ export default function Navbar() {
     </nav>
   );
 }
+
+
+
+

@@ -1,4 +1,11 @@
 {
-  "/page": "app/page.js",
-  "/dashboard/page": "app/dashboard/page.js"
+  "/_not-found/page": "app/_not-found/page.js",
+  "/(auth)/auth/confirm/route": "app/(auth)/auth/confirm/route.js",
+  "/(auth)/login/page": "app/(auth)/login/page.js",
+  "/(auth)/logout/page": "app/(auth)/logout/page.js",
+  "/(auth)/signup/page": "app/(auth)/signup/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/error/page": "app/error/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js"
 }
