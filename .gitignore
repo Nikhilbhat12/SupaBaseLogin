@@ -1,3 +1,6 @@
+#build out dir
+.next
+
 # Logs
 logs
 *.log
@@ -34,4 +37,3 @@ dist-ssr
 .env.*
 
 # next.js
-.next
