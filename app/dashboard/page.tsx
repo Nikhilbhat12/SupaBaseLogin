@@ -12,6 +12,8 @@ import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/lib/store/user";
 import { useSearchParams } from "next/navigation";
+import DdForMyblog from "@/components/DdForMyblog"
+
 
 const Myblogs = () => {
   const supabase = createClient();
@@ -174,7 +176,14 @@ const Myblogs = () => {
 
         const { data: insertData, error: insertError } = await supabase
           .from("blogs")
-          .insert([{ title, description, file_url: fileDataPath, user_id: userData?.id }]);
+          .insert([
+            {
+              title,
+              description,
+              file_url: fileDataPath,
+              user_id: userData?.id,
+            },
+          ]);
 
         if (insertError) {
           throw insertError;
@@ -200,7 +209,7 @@ const Myblogs = () => {
   };
 
   return (
-    <div className="pl-10 pr-10 pt-10">
+    <div className="pl-10 pr-10 pt-20 ">
       <Button
         variant="outline"
         className="cursor-pointer flex gap-2"
@@ -208,6 +217,9 @@ const Myblogs = () => {
       >
         <IoMdArrowBack /> Myblogs
       </Button>
+      
+      <DdForMyblog/>
+     
 
       <div className="pb-4 pt-4">
         <form onSubmit={handleSubmit}>
@@ -248,12 +260,15 @@ const Myblogs = () => {
 
       <div>
         {myblogs.map((blog) => (
-          <Card key={blog.id} className="shadow-md mb-4 mx-4 sm:mx-10 flex flex-col sm:flex-row">
+          <Card
+            key={blog.id}
+            className="shadow-md mb-4 mx-4 sm:mx-10 flex flex-col sm:flex-row"
+          >
             <div className="flex-shrink-0">
               <img
                 src={`https://hsuaakcahbyougsgblxw.supabase.co/storage/v1/object/public/images/${blog.file_url}`}
                 alt="Blog Image"
-                className="w-80 h-40 rounded-lg"
+                className="md:w-80 sm:w-96 h-40 rounded-lg"
               />
             </div>
             <div className="flex-grow p-4">
