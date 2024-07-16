@@ -3,8 +3,9 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import Navbar from "@/components/nav/NavBar";
+import { Poppins } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({weight:["500"],subsets:["latin"]});
 
 export const metadata: Metadata = {
   title: "Blogs",
@@ -15,10 +16,11 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
+
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={poppins.className}>
         <main className="mx-auto lg:py-10 space-y-10 p-5 lg:p-0">
           <Navbar />
           {children}
